@@ -22,8 +22,19 @@ class CharactersViewModel : ViewModel() {
         }
     }
 
-    fun toggleShowDetail(character: CharacterAux) {
+    /*fun toggleShowDetail(character: CharacterAux) {
         character.showDetail = !character.showDetail
+    }*/
+
+    fun toggleShowDetail(character: CharacterAux) {
+        val updatedList = _characters.value.toMutableList().map {
+            if (it.id == character.id) {
+                it.copy(showDetail = !it.showDetail)
+            } else {
+                it
+            }
+        }
+        _characters.value = updatedList
     }
 
 }
